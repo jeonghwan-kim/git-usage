@@ -72,3 +72,161 @@ git remote add origin {원격서버주소}
 - git 간편 안내서: http://rogerdudler.github.com/git-guide/index.ko.html
 - 한장으로 핵심 기능만: http://rogerdudler.github.com/git-guide/files/git_cheat_sheet.pdf
 
+
+## Commit
+
+커밋 합치기
+
+```
+git rebase -i HEAD~4 // 최신 4개의 커밋을 하나로 합치기
+```
+
+커밋 메세지 수성
+
+```
+$ git commit --amend // 마지막 커밋메세지 수정(ref)
+```
+
+간단한 commit방법
+
+```
+$ git add {변경한 파일병}
+$ git commit -m “{변경 내용}"
+```
+
+커밋 이력 확인
+
+```
+$ git log // 모든 커밋로그 확인
+$ git log -3 // 최근 3개 커밋로그 확인
+$ git log --pretty=oneline // 각 커밋을 한 줄로 표시
+```
+
+커밋 취소
+
+```
+$ git reset HEAD^ // 마지막 커밋 삭제
+$ git reset --hard HEAD // 마지막 커밋 상태로 되돌림
+$ git reset HEAD * // 스테이징을 언스테이징으로 변경, ref
+```
+
+
+## Branch
+
+master 브랜치를 특정 커밋으로 옮기기
+
+```
+git checkout better_branch
+git merge --strategy=ours master    # keep the content of this branch, but record a merge
+git checkout master
+git merge better_branch            # fast-forward master up to the merge
+```
+
+브랜치 목록
+
+```
+$ git branch // 로컬
+$ git branch -r // 리모트 
+$ git branch -a // 로컬, 리모트 포함된 모든 브랜치 보기
+```
+
+브랜치 생성
+
+```
+git branch new master // master -> new 브랜치 생성
+git push origin new // new 브랜치를 리모트로 보내기
+```
+
+브랜치 삭제
+
+```
+git branch -D {삭제할 브랜치 명} // local
+git push origin :{the_remote_branch} // remote
+```
+
+빈 브랜치 생성
+
+```
+$ git checkout --orphan {새로운 브랜치 명}
+$ git commit -a // 커밋해야 새로운 브랜치 생성됨
+$ git checkout -b new-branch // 브랜치 생성과 동시에 체크아웃
+```
+
+리모트 브랜치 가져오기
+
+```
+$ git checkout -t origin/{가져올 브랜치명} // ref
+```
+
+브랜치 이름 변경
+
+```
+$ git branch -m {new name} // ref
+```
+
+
+## Tag
+
+
+태그 생성
+
+```
+git tag -a {tag name} -m {tag message} {commit hash}
+```
+
+태그 삭제
+
+```
+git tag -d {tag name}
+git push origin :tags/{tag name} // remote
+```
+
+태그 푸시
+
+```
+git push origin --tags
+git push origin {tag name}
+git push --tags
+```
+
+
+## 기타 
+
+파일 삭제
+
+```
+git rm --cached --ignore-unmatch [삭제할 파일명]
+```
+
+히스토리 삭제
+
+- 목적: 패스워드, 아이디 같은 비공개 정보가 담긴 파일을 실수로 올렸을 때 삭제하는 방법이다. (history에서도 해당 파일만 삭제)
+
+```
+$ git clone [url] # 소스 다운로드
+$ cd [foler_name] # 해당 폴더 이동
+$ git filter-branch --index-filter 'git rm --cached --ignore-unmatch [삭제할 파일명]' --prune-empty -- --all # 모든 히스토리에서 해당 파일 삭제
+$ git push origin master --force # 서버로 전송
+```
+
+리모트 주소 추가하여 로컬에 싱크하기
+
+```
+$ git remote add upstream {리모트 주소}
+$ git pull upstream {브랜치명}
+```
+
+최적화
+
+```
+$ git gc
+$ git gc --aggressive
+```
+
+## 서버 설정
+
+강제 푸시 설정
+
+```
+git config receive.denynonfastforwards false
+```
