@@ -209,6 +209,12 @@ $ git filter-branch --index-filter 'git rm --cached --ignore-unmatch [삭제할 
 $ git push origin master --force # 서버로 전송
 ```
 
+히스토리에서 폴더 삭제:
+
+```
+git filter-branch --tree-filter 'rm -rf vendor/gems' HEAD
+```
+
 리모트 주소 추가하여 로컬에 싱크하기
 
 ```
@@ -229,4 +235,26 @@ $ git gc --aggressive
 
 ```
 git config receive.denynonfastforwards false
+```
+
+## Alias
+
+~/.gitconfig 파일을 설정하여 깃 명령어의 앨리어스를 지정할 수 있다.
+
+~/.gitconfig > alias 부분:
+
+```
+
+[alias]
+  br = branch
+  co = checkout
+  rb = rebase
+  st = status
+  cm = commit
+  pl = pull
+  ps = push
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(cyan)%h%C(reset) - %C(green)(%ar)%C(reset)  %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)' --all
+  ad = add
+  tg = tag
+  df = diff 
 ```
