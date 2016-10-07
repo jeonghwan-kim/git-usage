@@ -172,6 +172,7 @@ $ git branch -m {new name} // ref
 
 ```
 git tag -a {tag name} -m {tag message} {commit hash}
+git tag {tag name} {tag name} -f -m "{new message}" // Edit tag message
 ```
 
 태그 삭제
