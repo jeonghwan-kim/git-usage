@@ -81,7 +81,7 @@ git remote add origin {원격서버주소}
 git rebase -i HEAD~4 // 최신 4개의 커밋을 하나로 합치기
 ```
 
-커밋 메세지 수
+커밋 메세지 수정
 
 ```
 $ git commit --amend // 마지막 커밋메세지 수정(ref)
