@@ -100,6 +100,7 @@ $ git commit -m “{변경 내용}"
 $ git log // 모든 커밋로그 확인
 $ git log -3 // 최근 3개 커밋로그 확인
 $ git log --pretty=oneline // 각 커밋을 한 줄로 표시
+$ git reflog // reset 혹은 rebase로 없어진 과거의 커밋 이력 확인
 ```
 
 커밋 취소
