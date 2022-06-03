@@ -191,6 +191,31 @@ git push origin {tag name}
 git push --tags
 ```
 
+## Stash
+변경사항을 임시 저장한다.
+어떠한 작업을 하던 도중에 하던 작업을 멈추고 다른 브렌치로 변경해야할 일이 꽤나 자주 있을 것이다. 그럴 때, 커밋 없이 변경사항들을 임시로 저장할 수 있는 기능이 Stash이다.
+
+`git stash`는 Staged 상태 혹은 추적되고 있는 변경된 파일들을 스택에 잠시 저장한다.
+
+임시 보관 (스택에 Push)
+```
+git stash
+```
+
+꺼내오기 (스택에서 Pop)
+```
+git stash pop
+```
+
+임시보관된 작업 버리기 (스택에서 Drop)
+```
+git stash drop
+```
+
+임시보관된 작업 목록 보기
+```
+git stash list
+```
 
 ## 기타 
 
